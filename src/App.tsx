@@ -1,12 +1,16 @@
 import React from 'react';
-import './App.css';
+import WelcomeArea from './components/welcome-area/WelcomeArea';
+import ReadingArea from './components/reading-area/ReadingArea';
+import "./assests/theme/main.scss";
 
-function App() {
+
+const ClientApp:React.FC = () => {
   return (
-    <div className="App">
-      <h1> Library workspace </h1>
+    <div>
+      <WelcomeArea/>
+      <ReadingArea/>
     </div>
   );
 }
 
-export default App;
+export default ClientApp;

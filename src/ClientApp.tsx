@@ -6,10 +6,10 @@ import "./assests/theme/main.scss";
 
 const ClientApp:React.FC = () => {
   return (
-      <div>
+      <React.Fragment>
         <WelcomeArea/>
         <ReadingArea/>
-      </div>
+      </React.Fragment>
   )
 };
 

@@ -1,16 +1,13 @@
 import React from 'react';
-import WelcomeArea from './components/welcome-area/WelcomeArea';
-import ReadingArea from './components/reading-area/ReadingArea';
 import "./assests/theme/main.scss";
+import ClientApp from "./ClientApp";
 
 
-const ClientApp:React.FC = () => {
+function App() {
+
   return (
-    <div>
-      <WelcomeArea/>
-      <ReadingArea/>
-    </div>
+      <ClientApp/>
   );
 }
 
-export default ClientApp;
+export default App;

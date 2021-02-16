@@ -1,7 +1,8 @@
 import React from 'react';
 import {Col, Row} from "react-bootstrap";
 
-const Author: React.FC = () => {
+const Author : React.FC = () => {
+
     return(
         <Row className="author-details py-1">
             <Col xs={9}>

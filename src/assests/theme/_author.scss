@@ -1,0 +1,77 @@
+.authors {
+
+  .author-title{ // underline of the Author
+    border-bottom: 2px solid #2e3235;
+  }
+
+  h2{
+    margin-top: 10px;
+    color: #2c3134;
+  }
+
+  .author-details {
+
+    font-size: 20px;
+
+    &:hover {
+      background-color: #f5f5f5;
+
+      i{ // visible when hovering
+        display: inline-block;
+      }
+    }
+
+    i { // change mouse pointer when hovering
+      cursor: pointer;
+      display: none; // hide as default
+    }
+
+  }
+
+  .create-author{
+
+    font-size: 15px;
+    font-weight: 400;
+    cursor: pointer;
+
+
+    i{
+      color: #1149aa;
+    }
+
+  }
+
+  .author-form{
+    .create-author-title{
+      font-size: 1.5em;
+      font-weight: 500;
+      color: #144740;
+      border-bottom: 2px solid #144740; // set the thickness and color
+    }
+
+    i {
+      font-size: 1.3em; // size of the close icon
+      cursor: pointer;
+    }
+
+    .author-form-label{
+      font-size: 12px;
+    }
+
+    .form-control{
+      border: 2px solid #989898;
+      border-radius: 0;
+    }
+
+    .create-author-btn{
+      background: #01589b;
+      border-radius: 6px;
+    }
+
+  }
+
+
+
+}
+
+

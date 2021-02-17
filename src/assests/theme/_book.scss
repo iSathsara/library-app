@@ -1,0 +1,82 @@
+.books {
+
+  padding-left: 50px;
+  padding-right: 50px;
+
+  .book-title{
+    border-bottom: 2px solid #2e3235;
+    padding-bottom: 12px;
+    padding-top: 7px;
+  }
+
+  .book-details {
+
+    font-size: 20px;
+
+    &:hover {
+
+      background-color: #f5f5f5;
+
+      i{ // visible when hovering
+        display: inline-block;
+      }
+
+    }
+
+    i { // change mouse pointer when hovering
+      cursor: pointer;
+      display: none; // hide as default
+    }
+
+
+  }
+
+  .create-book {
+
+    font-size: 15px;
+    font-weight: 400;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    i{
+      color: #1149aa;
+    }
+
+  }
+
+  .book-form {
+
+    .create-book-title{
+      font-size: 1.5em;
+      font-weight: 500;
+      color: #144740;
+      border-bottom: 2px solid #144740;
+    }
+
+    i {
+      font-size: 1.3em; // size of the close icon
+      cursor: pointer;
+    }
+
+    .book-title-label {
+      font-size: 12px;
+    }
+
+    .form-control{
+      border: 2px solid #989898;
+      border-radius: 0;
+      margin-bottom: 10px;
+    }
+
+    .create-book-btn{
+      background: #01589b;
+      border-radius: 6px;
+    }
+
+
+
+  }
+
+}

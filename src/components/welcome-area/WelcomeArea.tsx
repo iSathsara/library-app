@@ -4,14 +4,16 @@ import original_library from '../../assests/images/original_library.jpg';
 
 const WelcomeArea:React.FC = () => {
     return(
-        <Container fluid={true}>
+        <Container className="px-0" fluid={true}>
             <Row>
                 <Col className="header-title text-center p-1">
                     <h1>My Library</h1>
                 </Col>
             </Row>
             <Row>
-                <Image src={original_library} fluid/>
+                <Col className="px-0">
+                    <Image src={original_library} className="welcome-image"/>
+                </Col>
             </Row>
             <Row>
                 <Col className="photo-credit text-right">

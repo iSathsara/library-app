@@ -11,7 +11,7 @@ const AuthorSection:React.FC = () => {
             <Row>
                 <Col>
                     <h2>Authors</h2>
-                    <hr className="author-title mt-1 mb-4"/>
+                    <hr className="author-title mt-1 mb-4 mr-4"/>
                 </Col>
             </Row>
             <AuthorList/>

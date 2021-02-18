@@ -1,10 +1,24 @@
 import React from "react";
 import Book from "./Book";
+import {IBook} from "../../../types/libraryTypes";
 
-const BookList:React.FC = () => {
-    return(
+type BookListProps = {
+    myBooks: IBook[],
+}
+
+const BookList: React.FC<BookListProps> = (props) => {
+
+    const {myBooks} = props;
+
+    const renderBooks = () => {
+        return myBooks.map((currentBook: IBook, indexNo: number) => {
+            return <Book myBook={currentBook} key={indexNo}/>
+        });
+    };
+
+    return (
         <React.Fragment>
-            <Book/>
+            {renderBooks()}
         </React.Fragment>
     )
 };

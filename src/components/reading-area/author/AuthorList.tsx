@@ -1,11 +1,24 @@
 import React from 'react';
 import Author from "./Author";
+import {IAuthor} from "../../../types/libraryTypes";
 
-const AuthorList: React.FC = () => {
+type AuthorListProps = {
+    myAuthors: IAuthor[]
+}
 
-    return(
+const AuthorList: React.FC<AuthorListProps> = (props) => {
+
+    const {myAuthors} = props;
+
+    const renderAuthor = () => {
+        return myAuthors.map((currentAuthor: IAuthor, indexNo: number) => {
+            return (<Author myAuthor={currentAuthor} key={indexNo}/>)
+        });
+    };
+
+    return (
         <React.Fragment>
-           <Author/>
+            {renderAuthor()}
         </React.Fragment>
     )
 };

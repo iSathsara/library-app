@@ -1,8 +1,37 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Col, Row, Form, Button} from "react-bootstrap";
+import CreatableSelect from 'react-select/creatable';
+import {IBook} from "../../../types/libraryTypes";
 
-const BookForm:React.FC = () => {
+type BookFormProps = {
+    onClickClose: () => void
+    onBookAdded: (book: IBook) => void
+};
 
+const BookForm:React.FC<BookFormProps> = (props) => {
+
+    //------- styling react-select -----------------------------
+    const options = [
+        { value: 'chocolate', label: 'Chocolate' },
+        { value: 'strawberry', label: 'Strawberry' },
+        { value: 'vanilla', label: 'Vanilla' }
+    ];
+
+    const customStyles = {
+        control: (base: any) => ({
+            ...base,
+            height: 30,
+            minHeight: 15
+        })
+    };
+
+    //---------------------------------------------------------
+    // Add book part ------------------------------------------
+
+    const [bookTitle, setBookTitle] = useState<string | null>(null);
+    const [bookIsbn, setBookIsbn] = useState<string | null>(null);
+
+    //const handleSetBookTitle
 
     return(
         <Row>
@@ -10,7 +39,7 @@ const BookForm:React.FC = () => {
               <Row>
                  <Col xs={12}>
                      <label className="create-book-title">Create Book</label>
-                     <i className="feather icon-x-circle float-right mt-1" />
+                     <i className="feather icon-x-circle float-right mt-1" onClick={props.onClickClose}/>
                  </Col>
               </Row>
 
@@ -22,6 +51,15 @@ const BookForm:React.FC = () => {
 
                       <Form.Label className="book-title-label">ISBN</Form.Label>
                       <Form.Control size="sm" type="text"/>
+
+                      <Form.Label className="book-title-label">Author</Form.Label>
+                      <CreatableSelect className="authors-list"
+                          isClearable
+                          //onChange={}
+                          //onInputChange={}
+                          options={options}
+                          styles={customStyles}
+                      />
 
                       <Button type="submit"
                               className="create-book-btn float-right mt-4 px-4 py-1"> Create

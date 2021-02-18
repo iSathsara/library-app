@@ -1,15 +1,22 @@
 import React from "react";
 import {Col, Row} from "react-bootstrap";
+import {IBook} from "../../../types/libraryTypes";
 
-const Book : React.FC = () => {
+type BookProps = {
+    myBook: IBook
+}
 
-    return(
-        <Row className="book-details my-2 pt-2 mx-0">
+const Book: React.FC<BookProps> = (props) => {
+
+    const {myBook} = props;
+
+    return (
+        <Row className="book-details my-3 pt-2 mx-0">
             <Col xs={9} className="px-0">
-                <label>1.Book 1</label>
+                <label>{myBook.title + " " + myBook.isbn}</label>
             </Col>
             <Col xs={3} className="text-right">
-                <i className="feather icon-edit text-warning mr-3" />
+                <i className="feather icon-edit text-warning mr-3"/>
                 <i className="feather icon-trash-2 text-danger mr-1"/>
             </Col>
         </Row>

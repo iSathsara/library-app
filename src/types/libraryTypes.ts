@@ -1,3 +1,8 @@
 export interface IAuthor {
-    author:string
+    name: string
+}
+
+export interface IBook {
+    title: string,
+    isbn: string
 }

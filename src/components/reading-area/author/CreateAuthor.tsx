@@ -1,9 +1,12 @@
 import React from 'react';
 
-// define a type in typescript
-const CreateAuthor:React.FC = () => {
+type CreateAuthorProps = {
+    onClickCreate: () => void
+};
+
+const CreateAuthor:React.FC<CreateAuthorProps> = (props) => {
     return(
-        <label className="create-author mt-3">
+        <label className="create-author mt-3" onClick={props.onClickCreate}>
             <i className="feather icon-plus"/> Add Author</label>
     )
 };

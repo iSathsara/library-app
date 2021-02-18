@@ -25,8 +25,10 @@ const BookSection: React.FC = () => {
     };
 
     const handleOnAddBook = (newBook: IBook) => {
-
-    }
+        const allBooks: IBook[] = book.slice();
+        allBooks.push(newBook);
+        setBook(allBooks);
+    };
 
     return (
         <React.Fragment>
@@ -37,7 +39,7 @@ const BookSection: React.FC = () => {
             </Row>
             <BookList myBooks={book}/>
             <CreateBook onClickCreate={handleOnClickCreate}/>
-            {isVisible && <BookForm onClickClose={handleOnClickClose}/>}
+            {isVisible && <BookForm onClickClose={handleOnClickClose} onBookAdded={handleOnAddBook}/>}
         </React.Fragment>
     )
 };

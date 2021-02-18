@@ -31,7 +31,22 @@ const BookForm:React.FC<BookFormProps> = (props) => {
     const [bookTitle, setBookTitle] = useState<string | null>(null);
     const [bookIsbn, setBookIsbn] = useState<string | null>(null);
 
-    //const handleSetBookTitle
+    const handleSetBookTitle = (title: string) => {
+      setBookTitle(title);
+    };
+
+    const handleSetBookIsbn = (isbn: string) => {
+        setBookIsbn(isbn);
+    };
+
+    const handleCreateBook = () => {
+        if(bookTitle == null || bookIsbn == null){
+            return
+        }
+        const newBook:IBook = {title: bookTitle, isbn: bookIsbn};
+        props.onBookAdded(newBook);
+    };
+
 
     return(
         <Row>
@@ -47,10 +62,22 @@ const BookForm:React.FC<BookFormProps> = (props) => {
                   <Col xs={12} lg={{span:11, offset:1}} className="book-input mt-5 align-content-end">
 
                       <Form.Label className="book-title-label">Title of the Book</Form.Label>
-                      <Form.Control size="sm" type="text"/>
+                      <Form.Control size="sm"
+                                    type="text"
+                                    value={bookTitle ? bookTitle : ''}
+                                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                        handleSetBookTitle(event.target.value);
+                                    }}
+                      />
 
                       <Form.Label className="book-title-label">ISBN</Form.Label>
-                      <Form.Control size="sm" type="text"/>
+                      <Form.Control size="sm"
+                                    type="text"
+                                    value={bookIsbn ? bookIsbn : ''}
+                                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                        handleSetBookIsbn(event.target.value)
+                                    }}
+                      />
 
                       <Form.Label className="book-title-label">Author</Form.Label>
                       <CreatableSelect className="authors-list"
@@ -62,6 +89,7 @@ const BookForm:React.FC<BookFormProps> = (props) => {
                       />
 
                       <Button type="submit"
+                              onClick={handleCreateBook}
                               className="create-book-btn float-right mt-4 px-4 py-1"> Create
                       </Button>
                   </Col>

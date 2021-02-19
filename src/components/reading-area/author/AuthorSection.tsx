@@ -13,7 +13,7 @@ const AuthorSection: React.FC = () => {
 
     const [author, setAuthor] = useState<IAuthor[]>(initialAuthor);
 
-
+    // form visibility -----------------------------------
     const handleOnClickCreate = () => {
         setVisible(true);
     };
@@ -22,9 +22,17 @@ const AuthorSection: React.FC = () => {
         setVisible(false);
     };
 
+    // add author handler --------------------------------
     const handleAuthorAdd = (newAuthor: IAuthor) => {
         const allAuthors: IAuthor[] = author.slice();
         allAuthors.push(newAuthor);
+        setAuthor(allAuthors);
+    };
+
+    // delete author handler ----------------------------
+    const handleAuthorDeleted = (index: number) => {
+        const allAuthors: IAuthor[] = author.slice();
+        allAuthors.splice(index, 1);
         setAuthor(allAuthors);
     };
 
@@ -36,7 +44,7 @@ const AuthorSection: React.FC = () => {
                     <hr className="author-title mt-1 mb-4 mr-0"/>
                 </Col>
             </Row>
-            <AuthorList myAuthors={author}/>
+            <AuthorList myAuthors={author} onDeleted={handleAuthorDeleted}/>
             <CreateAuthor onClickCreate={handleOnClickCreate}/>
             {isVisible && <AuthorForm onClickClose={handleOnClickClose} onAuthorAdded={handleAuthorAdd}/>}
         </React.Fragment>

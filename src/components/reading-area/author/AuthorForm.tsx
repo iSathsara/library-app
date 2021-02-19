@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {FormEvent, useState} from 'react';
 import {Button, Col, Form, Row} from "react-bootstrap";
 import {IAuthor} from "../../../types/libraryTypes";
 
@@ -16,7 +16,8 @@ const AuthorForm: React.FC<AuthorFormProps> = (props) => {
         setAuthorName(name);
     };
 
-    const handleCreateAuthor = () => {
+    const handleCreateAuthor = (e:FormEvent) => {
+        e.preventDefault();
         if (authorName == null) {
             return
         }
@@ -38,20 +39,22 @@ const AuthorForm: React.FC<AuthorFormProps> = (props) => {
                     </Col>
                 </Row>
 
-                <Row>
-                    <Col xs={12} lg={{span: 11, offset: 1}} className="author-input mt-5 align-content-end">
-                        <Form.Label className="author-form-label">Name of Author</Form.Label>
-                        <Form.Control size="sm" type="text"
-                                      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                                          handleSetAuthorName(event.target.value);
-                                      }}
-                                      value={authorName ? authorName : ''}/>
-                        <Button type="submit"
-                                onClick={handleCreateAuthor}
-                                className="create-author-btn float-right mt-4 px-4 py-1"> Create
-                        </Button>
-                    </Col>
-                </Row>
+                <form onSubmit={handleCreateAuthor}>
+                    <Row>
+                        <Col xs={12} lg={{span: 11, offset: 1}} className="author-input mt-5 align-content-end">
+                            <Form.Label className="author-form-label">Name of Author</Form.Label>
+                            <Form.Control size="sm" type="text"
+                                          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                              handleSetAuthorName(event.target.value);
+                                          }}
+                                          value={authorName ? authorName : ''}/>
+                            <Button type="submit"
+                                    className="create-author-btn float-right mt-4 px-4 py-1"> Create
+                            </Button>
+                        </Col>
+                    </Row>
+                </form>
+
             </Col>
         </Row>
     )

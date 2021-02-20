@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Col, Row} from "react-bootstrap";
 import AuthorList from "./AuthorList";
 import CreateAuthor from "./CreateAuthor";
@@ -11,29 +11,56 @@ const AuthorSection: React.FC = () => {
 
     const initialAuthor: IAuthor[] = [];
 
-    const [author, setAuthor] = useState<IAuthor[]>(initialAuthor);
+    const [authorsList, setAuthorList] = useState<IAuthor[]>(initialAuthor);
+
+    const [authorToUpdate, setAuthorToUpdate] = useState<IAuthor | null>(null);
+
+    const [updatedAuthorIndex, setUpdatedAuthorIndex] = useState<number | null>(null);
+
 
     // form visibility -----------------------------------
     const handleOnClickCreate = () => {
         setVisible(true);
+        setAuthorToUpdate(null);
     };
 
     const handleOnClickClose = () => {
         setVisible(false);
     };
 
+    // set form visible with update click
+    useEffect(() => {
+        if (!authorToUpdate) {
+            return;
+        }
+        setVisible(true);
+    }, [authorToUpdate]);
+
+
     // add author handler --------------------------------
     const handleAuthorAdd = (newAuthor: IAuthor) => {
-        const allAuthors: IAuthor[] = author.slice();
+        const allAuthors: IAuthor[] = authorsList.slice();
         allAuthors.push(newAuthor);
-        setAuthor(allAuthors);
+        setAuthorList(allAuthors);
     };
 
     // delete author handler ----------------------------
     const handleAuthorDeleted = (index: number) => {
-        const allAuthors: IAuthor[] = author.slice();
+        const allAuthors: IAuthor[] = authorsList.slice();
         allAuthors.splice(index, 1);
-        setAuthor(allAuthors);
+        setAuthorList(allAuthors);
+    };
+
+    // update author handler ----------------------------
+    const handleAuthorUpdateReq = (index: number) => {
+        setAuthorToUpdate(authorsList[index]);
+        setUpdatedAuthorIndex(index);
+    };
+
+    const handleAuthorUpdated = (updatedAuthor: IAuthor, index: number) => {
+        const allAuthors = authorsList.slice();
+        allAuthors.splice(index, 1, updatedAuthor);
+        setAuthorList(allAuthors);
     };
 
     return (
@@ -44,9 +71,18 @@ const AuthorSection: React.FC = () => {
                     <hr className="author-title mt-1 mb-4 mr-0"/>
                 </Col>
             </Row>
-            <AuthorList myAuthors={author} onDeleted={handleAuthorDeleted}/>
+            <AuthorList myAuthors={authorsList}
+                        onDeleted={handleAuthorDeleted}
+                        onUpdateReq={handleAuthorUpdateReq}/>
+
             <CreateAuthor onClickCreate={handleOnClickCreate}/>
-            {isVisible && <AuthorForm onClickClose={handleOnClickClose} onAuthorAdded={handleAuthorAdd}/>}
+
+            {isVisible && <AuthorForm onClickClose={handleOnClickClose}
+                                      onAuthorAdded={handleAuthorAdd}
+                                      authorToUpdate={authorToUpdate}
+                                      updatedAuthorIndex={updatedAuthorIndex}
+                                      onAuthorUpdated={handleAuthorUpdated}
+            />}
         </React.Fragment>
     )
 };
